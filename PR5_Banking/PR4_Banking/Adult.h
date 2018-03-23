@@ -7,7 +7,7 @@
 class Adult : public Customer {
 public:
 	//constructor
-	Adult(std::string name, std::string address, int age, std::string tel_number, int customer_id : Customer (name, address, age, tel_number, customer_id){
+	Adult(std::string name, std::string address, int age, std::string tel_number, int customer_id) : Customer (name, address, age, tel_number, customer_id){
 		checking_int_rate = 0.67;
 		saving_int_rate = 0.88;
 	}
