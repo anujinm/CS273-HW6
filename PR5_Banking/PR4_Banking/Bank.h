@@ -2,11 +2,17 @@
 #define BANK_H_
 #include <vector>
 #include <stdexcept>
+#include <string>
+#include <cstring>
+#include <iostream>
 #include "Account.h"
 #include "Customer.h"
 #include "Adult.h"
 #include "Senior.h"
 #include "Student.h"
+#include "Saving_Account.h"
+#include "Checking_Account.h"
+using namespace std;
 /**
 The CS273 Bank has Accounts and Customers
 
@@ -49,7 +55,10 @@ private:
 	*/
 	Customer *find_customer(std::string name)
 	{
-		// FIXME: Find and return the Customer object with the parameter name
+		for (size_t i = 0; i < accounts.size(); i++) {
+			if (customers[i]->get_name() == name)
+				return customers[i];
+		}
 		return NULL;
 	}
 
@@ -62,9 +71,18 @@ private:
 	Account * add_account (Customer *cust, std::string account_type)
 	{
 		Account *acct = NULL;
-
-		// FIXME: Factory method for creating a Account object (could be a Saving_Account or a Checking_Account).
-		// here's where you increment the account number(id) and pass it
+		if (account_type == "savings") {
+			acct = new Saving_Account(cust, account_id);
+		}
+		else if (account_type == "checking") {
+			acct = new Checking_Account(cust, account_id);
+		}
+		if (acct == NULL) {
+			return NULL;
+		}
+		account_id++;
+		accounts.push_back(acct);
+		return acct;
 		return acct;
 	}
 
@@ -102,9 +120,21 @@ public:
 	{
 		Customer *cust;
 		
-		// FIXME: Depending on the customer type, we want to create an Adult, Senior, or Student object.
+		if (cust_type == "adult") {
+			cust = new Adult(name, address, age, telephone, customer_id);
+		}
+		else if (cust_type == "senior") {
+			cust = new Senior (name, address, age, telephone, customer_id);
+		}
+		else if (cust_type == "student") {
+			cust = new Student(name, address, age, telephone, customer_id);
+		}
+		if (cust == NULL) {
+			return NULL;
+		}
 
 		customers.push_back(cust);
+		customer_id++;
 		return add_account(cust, account_type);
 	}
 
@@ -117,7 +147,7 @@ public:
 	{
 		Account *acct = get_account(acct_number);
 		if (acct) {
-			// FIXME: Deposit the amt in the account
+			acct->set_balance(acct->get_balance() + amt);
 		}
 	}
 
@@ -130,7 +160,7 @@ public:
 	{
 		Account *acct = get_account(acct_number);
 		if (acct) {
-			// FIXME: Withdraw the amt from the account
+			acct->set_balance(acct->get_balance() - amt);
 		}
 	}
 
