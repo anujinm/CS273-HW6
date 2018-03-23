@@ -10,7 +10,7 @@ private:
 	double interest = 3.2;
 public:
 	//constructor
-	Saving_Account(Customer*  c, int id : Account(c, id) {}
+	Saving_Account(Customer*  c, int id) : Account(c, id) {}
 
 	//destructor
 	~Saving_Account(){}
@@ -30,3 +30,4 @@ public:
 	}
 };
 #endif // !SAVING_ACCOUNT_H
+
