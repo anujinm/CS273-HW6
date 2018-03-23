@@ -4,7 +4,9 @@
 #include <stdexcept>
 #include "Account.h"
 #include "Customer.h"
-
+#include "Adult.h"
+#include "Senior.h"
+#include "Student.h"
 /**
 The CS273 Bank has Accounts and Customers
 
@@ -32,7 +34,11 @@ private:
 		std::vector<int> user_accounts;
 
 		// FIXME: Find all the accounts belonging to a customer name and add it to the vector of account numbers.
-		
+		for (size_t i = 0; i < accounts.size(); i++) {
+			std::cout << "c" << i << accounts[i]->get_customer() << std::endl;
+			if (accounts[i]->get_customer()->get_name() == name)
+				user_accounts.push_back(accounts[i]->get_account());
+		}
 		return user_accounts;
 	}
 
