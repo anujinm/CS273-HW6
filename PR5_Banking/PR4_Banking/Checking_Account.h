@@ -10,7 +10,7 @@ private:
 	double interest = 2.7;
 public:
 	//constructor
-	Checking_Account(Customer*  c, int id : Account(c, id) {}
+	Checking_Account(Customer*  c, int id) : Account(c, id) {}
 
 	//destructor
 	~Checking_Account() {}
