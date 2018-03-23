@@ -54,7 +54,7 @@ public:
 	void set_age(int new_age) {
 		this->age = new_age;
 	}
-	void set_name(std::string new_tel_number) {
+	void set_tel_number(std::string new_tel_number) {
 		this->tel_number = new_tel_number;
 	}
 	void set_cust_id(int new_cust_id) {
