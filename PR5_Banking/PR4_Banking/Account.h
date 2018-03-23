@@ -31,7 +31,7 @@ protected:
 		int overdraft, charge;
 
 		// Polymorphism: calls the correct virtual methods from the specific customer type
-		overdraft = customer->get_overdraft_fee();
+		overdraft = customer->get_overdraft_fee();  
 		charge = customer->get_checking_fee();
 
 		std::stringstream ss;
